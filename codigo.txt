@@ -1,0 +1,146 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+class Convertir{
+	//==============================
+		public double cAF(double dato) {
+			
+		}
+		public double cAK(double dato) {
+			
+		}
+		public double cAR(double dato) {
+			
+		}
+		//==============================
+		public double fAC(double dato) {
+			
+		}
+		public double fAK(double dato) {
+			
+		}
+		public double fAR(double dato) {
+			
+		}
+		//==============================
+		public double kAC(double dato) {
+			
+		}
+		public double kAF(double dato) {
+			
+		}
+		public double kAR(double dato) {
+			
+		}
+		//==============================
+		public double rAC(double dato) {
+			
+		}
+		public double rAF(double dato) {
+			
+		}
+		public double rAK(double dato) {
+			
+		}
+		//==============================
+
+
+}
+class Convertidor extends JFrame implements ActionListener{
+	JComboBox<String> comboTempIngresada, comboTempConvertir;
+	JTextField cantidadI, resultado;
+	public Convertidor() {
+		getContentPane().setLayout(new FlowLayout());
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setSize(250,100);
+		setLocationRelativeTo(null);
+		setTitle("Convertidor");
+		setVisible(true);
+		
+		add(new JLabel(" Convertir: "));
+		cantidadI = new JTextField(3);
+		cantidadI.addActionListener(this);
+		add(cantidadI);
+		String vectorOpciones[]= {"Elige Opcion...", "Centigrados", "Fahrenheit","Kelvin","Rankine"};
+		comboTempIngresada = new JComboBox<String>(vectorOpciones);
+		comboTempIngresada.addActionListener(this);
+		add(comboTempIngresada);
+		
+		add(new JLabel("A: "));
+		String vectorOpcion2[] = {"Elige Opcion..."};
+		comboTempConvertir = new JComboBox<String>(vectorOpcion2);
+		comboTempConvertir.addActionListener(this);
+		add(comboTempConvertir);
+		resultado = new JTextField(3);
+		resultado.addActionListener(this);
+		add(resultado);
+	}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		String paraCentigrados [] = {"Fahrenheit","Kelvin","Rankine"};
+		String paraFahrenheit [] = {"Centigrados","Kelvin","Rankine"};
+		String paraKelvin [] = {"Centigrados", "Fahrenheit","Rankine"};
+		String paraRankine []= {"Centigrados", "Fahrenheit","Kelvin"};
+	if(e.getSource()== comboTempIngresada) {
+		comboTempConvertir.removeAllItems();
+		double dato = Double.parseDouble(cantidadI.getText());
+		if(comboTempIngresada.getSelectedItem().equals("Centigrados")) {
+			for(String x: paraCentigrados)
+				comboTempConvertir.addItem(x);
+			if(comboTempConvertir.getSelectedItem().equals("Fahrenheit")) {
+				resultado.setText(String.valueOf(new Convertir().cAF(dato)));
+			}else if(comboTempConvertir.getSelectedItem().equals("Kelvin")) {
+				resultado.setText(String.valueOf(new Convertir().cAK(dato)));
+			}else if(comboTempConvertir.getSelectedItem().equals("Rankine")) {
+				resultado.setText(String.valueOf(new Convertir().cAR(dato)));
+			}//=====================================================================
+		}else if(comboTempIngresada.getSelectedItem().equals("Fahrenheit")) {
+			for(String x: paraFahrenheit)
+				comboTempConvertir.addItem(x);
+			if(comboTempConvertir.getSelectedItem().equals("Centigrados")) {
+				resultado.setText(String.valueOf(new Convertir().fAC(dato)));
+			}else if(comboTempConvertir.getSelectedItem().equals("Kelvin")) {
+				resultado.setText(String.valueOf(new Convertir().fAK(dato)));
+			}else if(comboTempConvertir.getSelectedItem().equals("Rankine")) {
+				resultado.setText(String.valueOf(new Convertir().fAR(dato)));
+			}//===================================================================
+		}else if(comboTempIngresada.getSelectedItem().equals("Kelvin")) {
+			for(String x: paraKelvin)
+				comboTempConvertir.addItem(x);
+			if(comboTempConvertir.getSelectedItem().equals("Fahrenheit")) {
+				resultado.setText(String.valueOf(new Convertir().kAF(dato)));
+			}else if(comboTempConvertir.getSelectedItem().equals("Centigrados")) {
+				resultado.setText(String.valueOf(new Convertir().kAC(dato)));
+			}else if(comboTempConvertir.getSelectedItem().equals("Rankine")) {
+				resultado.setText(String.valueOf(new Convertir().kAR(dato)));
+			}//===================================================================
+		}else if(comboTempIngresada.getSelectedItem().equals("Rankine")) {
+			for(String x: paraRankine)
+				comboTempConvertir.addItem(x);
+			if(comboTempConvertir.getSelectedItem().equals("Fahrenheit")) {
+				resultado.setText(String.valueOf(new Convertir().rAF(dato)));
+			}else if(comboTempConvertir.getSelectedItem().equals("Kelvin")) {
+				resultado.setText(String.valueOf(new Convertir().rAK(dato)));
+			}else if(comboTempConvertir.getSelectedItem().equals("Centigrados")) {
+				resultado.setText(String.valueOf(new Convertir().rAC(dato)));
+			}
+		}
+		
+	 }
+	}
+	
+}
+public class PruebaConverciones {
+	public static void main(String[] args) {
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				new Convertidor();
+				
+			}
+			
+		});
+
+	}
+}
