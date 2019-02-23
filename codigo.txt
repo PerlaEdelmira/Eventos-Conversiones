@@ -5,43 +5,43 @@ import java.awt.event.ActionListener;
 class Convertir{
 	//==============================
 		public double cAF(double dato) {
-			
+			return (dato *1.8) + 32;
 		}
 		public double cAK(double dato) {
-			
+			return dato + 273.15;
 		}
 		public double cAR(double dato) {
-			
+			return (9/5)*dato + 491.67;
 		}
 		//==============================
 		public double fAC(double dato) {
-			
+			return (dato-32) / 1.8;
 		}
 		public double fAK(double dato) {
-			
+			return 5/9 *(dato - 32) + 273.15;
 		}
 		public double fAR(double dato) {
-			
+			return  dato + 459.67;
 		}
 		//==============================
 		public double kAC(double dato) {
-			
+			return dato - 273.15;
 		}
 		public double kAF(double dato) {
-			
+			return 1.8 *(dato - 273.15) + 32;
 		}
 		public double kAR(double dato) {
-			
+			return (9/5 )*(dato - 273.15) +491.67;
 		}
 		//==============================
 		public double rAC(double dato) {
-			
+			return (5/9)*(dato-491.67);
 		}
 		public double rAF(double dato) {
-			
+			return dato - 459.67;
 		}
 		public double rAK(double dato) {
-			
+			return (5/9) *(dato - 491.67) + 273.15;
 		}
 		//==============================
 
@@ -59,7 +59,7 @@ class Convertidor extends JFrame implements ActionListener{
 		setVisible(true);
 		
 		add(new JLabel(" Convertir: "));
-		cantidadI = new JTextField(3);
+		cantidadI = new JTextField(4);
 		cantidadI.addActionListener(this);
 		add(cantidadI);
 		String vectorOpciones[]= {"Elige Opcion...", "Centigrados", "Fahrenheit","Kelvin","Rankine"};
@@ -72,7 +72,7 @@ class Convertidor extends JFrame implements ActionListener{
 		comboTempConvertir = new JComboBox<String>(vectorOpcion2);
 		comboTempConvertir.addActionListener(this);
 		add(comboTempConvertir);
-		resultado = new JTextField(3);
+		resultado = new JTextField(4);
 		resultado.addActionListener(this);
 		add(resultado);
 	}
@@ -84,8 +84,8 @@ class Convertidor extends JFrame implements ActionListener{
 		String paraRankine []= {"Centigrados", "Fahrenheit","Kelvin"};
 	if(e.getSource()== comboTempIngresada) {
 		comboTempConvertir.removeAllItems();
-		double dato = Double.parseDouble(cantidadI.getText());
 		if(comboTempIngresada.getSelectedItem().equals("Centigrados")) {
+			double dato = Double.parseDouble(cantidadI.getText());
 			for(String x: paraCentigrados)
 				comboTempConvertir.addItem(x);
 			if(comboTempConvertir.getSelectedItem().equals("Fahrenheit")) {
@@ -96,6 +96,7 @@ class Convertidor extends JFrame implements ActionListener{
 				resultado.setText(String.valueOf(new Convertir().cAR(dato)));
 			}//=====================================================================
 		}else if(comboTempIngresada.getSelectedItem().equals("Fahrenheit")) {
+			double dato = Double.parseDouble(cantidadI.getText());
 			for(String x: paraFahrenheit)
 				comboTempConvertir.addItem(x);
 			if(comboTempConvertir.getSelectedItem().equals("Centigrados")) {
@@ -106,6 +107,7 @@ class Convertidor extends JFrame implements ActionListener{
 				resultado.setText(String.valueOf(new Convertir().fAR(dato)));
 			}//===================================================================
 		}else if(comboTempIngresada.getSelectedItem().equals("Kelvin")) {
+			double dato = Double.parseDouble(cantidadI.getText());
 			for(String x: paraKelvin)
 				comboTempConvertir.addItem(x);
 			if(comboTempConvertir.getSelectedItem().equals("Fahrenheit")) {
@@ -116,6 +118,7 @@ class Convertidor extends JFrame implements ActionListener{
 				resultado.setText(String.valueOf(new Convertir().kAR(dato)));
 			}//===================================================================
 		}else if(comboTempIngresada.getSelectedItem().equals("Rankine")) {
+			double dato = Double.parseDouble(cantidadI.getText());
 			for(String x: paraRankine)
 				comboTempConvertir.addItem(x);
 			if(comboTempConvertir.getSelectedItem().equals("Fahrenheit")) {
